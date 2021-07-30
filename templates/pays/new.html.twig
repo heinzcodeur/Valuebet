@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Pays{% endblock %}
+
+{% block body %}
+    <div class="container bg-light text-dark rounded-sm">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+    <h3 class="text-center">Nouveau Pays</h3>
+
+    {{ include('pays/_form.html.twig') }}
+
+    <a href="{{ path('pays_index') }}" class="btn btn-info">retour </a>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+{% endblock %}
