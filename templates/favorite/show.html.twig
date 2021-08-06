@@ -1,0 +1,37 @@
+
+
+{% block body %}
+
+    {{ include('head.html.twig') }}
+
+    <h1>Favorite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ favorite.id }}</td>
+            </tr>
+            <tr>
+                <th>Cote</th>
+                <td>{{ favorite.cote }}</td>
+            </tr>
+            <tr>
+                <th>affiche</th>
+                <td>{{ favorite.affiche }}</td>
+            </tr>
+            <tr>
+                <th>athlete</th>
+                <td>{{ favorite.athlete }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('favorite_index') }}">back to list</a>
+
+    <a href="{{ path('favorite_edit', {'id': favorite.id}) }}">edit</a>
+
+    {{ include('favorite/_delete_form.html.twig') }}
+    {{ include('end.html.twig') }}
+
+{% endblock %}

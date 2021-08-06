@@ -1,0 +1,33 @@
+{% block body %}
+    {{ include('head.html.twig') }}
+
+    <h1>Tournoi index</h1>
+    <a href="{{ path('tournoi_new') }}" class="btn btn-primary text-center">nouveau</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tournoi in tournois %}
+            <tr>
+                <td>{{ tournoi.id }}</td>
+                <td>{{ tournoi.name }}</td>
+                <td>
+                    <a href="{{ path('tournoi_show', {'id': tournoi.id}) }}" class="btn btn-info">show</a>
+                    <a href="{{ path('tournoi_edit', {'id': tournoi.id}) }}" class="btn btn-primary">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

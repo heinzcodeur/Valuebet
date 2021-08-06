@@ -1,0 +1,14 @@
+
+{% block body %}
+
+    {{ include('head.html.twig') }}
+
+    <h1>nouvelle Affiche</h1>
+
+    {{ include('affiche/_form.html.twig') }}
+
+    <a href="{{ path('affiche_index') }}" class="btn btn-primary">retour</a>
+
+    {{ include('end.html.twig') }}
+
+{% endblock %}

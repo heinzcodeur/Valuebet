@@ -34,9 +34,26 @@ class Sport
      */
     private $athletes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Tournoi::class, mappedBy="discipline")
+     */
+    private $tournois;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Rencontre::class, mappedBy="sport")
+     */
+    private $rencontres;
+
     public function __construct()
     {
         $this->athletes = new ArrayCollection();
+        $this->tournois = new ArrayCollection();
+        $this->rencontres = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -93,6 +110,66 @@ class Sport
             // set the owning side to null (unless already changed)
             if ($athlete->getDiscipline() === $this) {
                 $athlete->setDiscipline(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tournoi[]
+     */
+    public function getTournois(): Collection
+    {
+        return $this->tournois;
+    }
+
+    public function addTournoi(Tournoi $tournoi): self
+    {
+        if (!$this->tournois->contains($tournoi)) {
+            $this->tournois[] = $tournoi;
+            $tournoi->setDiscipline($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTournoi(Tournoi $tournoi): self
+    {
+        if ($this->tournois->removeElement($tournoi)) {
+            // set the owning side to null (unless already changed)
+            if ($tournoi->getDiscipline() === $this) {
+                $tournoi->setDiscipline(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Rencontre[]
+     */
+    public function getRencontres(): Collection
+    {
+        return $this->rencontres;
+    }
+
+    public function addRencontre(Rencontre $rencontre): self
+    {
+        if (!$this->rencontres->contains($rencontre)) {
+            $this->rencontres[] = $rencontre;
+            $rencontre->setSport($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRencontre(Rencontre $rencontre): self
+    {
+        if ($this->rencontres->removeElement($rencontre)) {
+            // set the owning side to null (unless already changed)
+            if ($rencontre->getSport() === $this) {
+                $rencontre->setSport(null);
             }
         }
 

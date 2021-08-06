@@ -1,0 +1,13 @@
+{% block body %}
+
+    {% include 'head.html.twig' %}
+
+    <h1>nouveau match</h1>
+
+    {{ include('rencontre/_form.html.twig') }}
+
+    <a href="{{ path('rencontre_index') }}" class="btn btn-primary">retour</a>
+
+    {% include 'end.html.twig' %}
+
+{% endblock %}

@@ -1,0 +1,39 @@
+
+
+{% block body %}
+    {{ include('head.html.twig') }}
+
+    <h1>Ranking index</h1>
+    <a href="{{ path('ranking_new') }}" class="btn btn-primary">Create new</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>cat</th>
+                <th>Value</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ranking in rankings %}
+            <tr>
+                <td>{{ ranking.id }}</td>
+                <td>{{ ranking.category }}</td>
+                <td>{{ ranking.value }}</td>
+                <td>
+                    <a href="{{ path('ranking_show', {'id': ranking.id}) }}" class="btn btn-info">show</a>
+                    <a href="{{ path('ranking_edit', {'id': ranking.id}) }}" class="btn btn-success">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ include('end.html.twig') }}
+
+{% endblock %}

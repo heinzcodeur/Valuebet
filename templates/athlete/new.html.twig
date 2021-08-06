@@ -1,0 +1,12 @@
+{% block body %}
+
+    {{ include('head.html.twig') }}
+
+    <h1 class="text-center">Nouvel Athlete</h1>
+
+    {{ include('athlete/_form.html.twig') }}
+
+    <a href="{{ path('athlete_index') }}" class="btn btn-primary">retour</a>
+
+    {{ include('end.html.twig') }}
+{% endblock %}

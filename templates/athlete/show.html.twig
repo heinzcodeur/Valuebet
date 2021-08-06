@@ -1,0 +1,39 @@
+
+{% block body %}
+
+    {% include 'head.html.twig' %}
+
+    <h1>Athlete</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Classement</th>
+                <td>{{ athlete.ranking }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ athlete.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ athlete.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ athlete.birthDate ? athlete.birthDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Taille</th>
+                <td>{{ athlete.taille }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('athlete_index') }}" class="btn btn-primary">retour</a>
+
+    <a href="{{ path('athlete_edit', {'id': athlete.id}) }}" class="btn btn-success">modifier</a>
+
+    {% include 'end.html.twig' %}
+
+{% endblock %}

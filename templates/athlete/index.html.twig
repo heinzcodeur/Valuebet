@@ -1,0 +1,43 @@
+{% block body %}
+
+    {% include 'head.html.twig' %}
+
+    <h1>Athlete index</h1>
+                <a href="{{ path('athlete_new') }}" class="btn btn-primary">nouveau</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>discipline</th>
+                <th>First_name</th>
+                <th>Last_name</th>
+                <th>Birth_date</th>
+                <th>origine</th>
+                <th>Taille</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for athlete in athletes %}
+            <tr>
+                <td>{{ athlete.discipline }}</td>
+                <td>{{ athlete.firstName }}</td>
+                <td>{{ athlete.lastName }}</td>
+                <td>{{ athlete.birthDate ? athlete.birthDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ athlete.origine }}</td>
+                <td>{{ athlete.taille }}</td>
+                <td>
+                    <a href="{{ path('athlete_show', {'id': athlete.id}) }}">show</a>
+                    <a href="{{ path('athlete_edit', {'id': athlete.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+           {% include 'end.html.twig' %}
+{% endblock %}

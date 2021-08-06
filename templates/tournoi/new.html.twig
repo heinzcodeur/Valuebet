@@ -1,0 +1,12 @@
+{% block body %}
+
+    {{ include('head.html.twig') }}
+
+    <h1>Nouveau Tournoi</h1>
+
+    {{ include('tournoi/_form.html.twig') }}
+
+    <a href="{{ path('tournoi_index') }}" class="btn btn-primary">retour</a>
+
+    {{ include('end.html.twig') }}
+{% endblock %}

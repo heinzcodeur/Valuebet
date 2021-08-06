@@ -1,0 +1,13 @@
+{% block body %}
+
+    {% include 'head.html.twig' %}
+
+    <h1>Create new City</h1>
+    <a href="{{ path('city_index') }}" class="btn btn-primary">retour</a>
+
+    {{ include('city/_form.html.twig') }}
+
+
+    {% include 'end.html.twig' %}
+
+{% endblock %}

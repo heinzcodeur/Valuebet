@@ -1,0 +1,42 @@
+
+{% block body %}
+
+    {{ include('head.html.twig') }}
+
+    <h1>Affiche index</h1>
+    <a href="{{ path('affiche_new') }}" class="btn btn-primary">Create new</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>favori</th>
+                <th>outsider</th>
+                <th>Calendrier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for affiche in affiches %}
+            <tr>
+                <td>{{ affiche.id }}</td>
+                <td>{{ affiche.adversaire1 }}</td>
+                <td>{{ affiche.adversaire2 }}</td>
+                <td>{{ affiche.calendrier ? affiche.calendrier|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('affiche_show', {'id': affiche.id}) }}" class="btn btn-info">show</a>
+                    <a href="{{ path('affiche_edit', {'id': affiche.id}) }}" class="btn btn-primary">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {{ include('end.html.twig') }}
+
+{% endblock %}

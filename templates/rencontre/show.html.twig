@@ -1,0 +1,22 @@
+{% block body %}
+
+    {% include 'head.html.twig' %}
+
+    <h1>Rencontre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rencontre.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('rencontre_index') }}">back to list</a>
+
+    <a href="{{ path('rencontre_edit', {'id': rencontre.id}) }}">edit</a>
+
+    {% include 'end.html.twig' %}
+
+{% endblock %}

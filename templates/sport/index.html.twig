@@ -1,0 +1,38 @@
+{% block body %}
+
+    {{ include('head.html.twig') }}
+    <a href="{{ path('sport_new') }}" class="btn btn-primary text-center">Nouveau</a>
+
+    <h1>Sport index</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sport in sports %}
+            <tr>
+                <td>{{ sport.id }}</td>
+                <td>{{ sport.type }}</td>
+                <td>{{ sport.name }}</td>
+                <td>
+                    <a href="{{ path('sport_show', {'id': sport.id}) }}">show</a>
+                    <a href="{{ path('sport_edit', {'id': sport.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {{ include('end.html.twig') }}
+
+{% endblock %}

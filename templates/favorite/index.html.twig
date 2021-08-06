@@ -1,0 +1,36 @@
+{% block body %}
+
+    {{ include('head.html.twig') }}
+    <h1>Favorite index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cote</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for favorite in favorites %}
+            <tr>
+                <td>{{ favorite.id }}</td>
+                <td>{{ favorite.cote }}</td>
+                <td>
+                    <a href="{{ path('favorite_show', {'id': favorite.id}) }}">show</a>
+                    <a href="{{ path('favorite_edit', {'id': favorite.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('favorite_new') }}">Create new</a>
+
+    {{ include('end.html.twig') }}
+
+{% endblock %}

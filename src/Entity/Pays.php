@@ -52,10 +52,27 @@ class Pays
      */
     private $athletes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Tournoi::class, mappedBy="pays")
+     */
+    private $tournois;
+
+    /**
+     * @ORM\OneToMany(targetEntity=City::class, mappedBy="country")
+     */
+    private $cities;
+
 
     public function __construct()
     {
         $this->athletes = new ArrayCollection();
+        $this->tournois = new ArrayCollection();
+        $this->cities = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -147,6 +164,66 @@ class Pays
             // set the owning side to null (unless already changed)
             if ($athlete->getOrigine() === $this) {
                 $athlete->setOrigine(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tournoi[]
+     */
+    public function getTournois(): Collection
+    {
+        return $this->tournois;
+    }
+
+    public function addTournoi(Tournoi $tournoi): self
+    {
+        if (!$this->tournois->contains($tournoi)) {
+            $this->tournois[] = $tournoi;
+            $tournoi->setPays($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTournoi(Tournoi $tournoi): self
+    {
+        if ($this->tournois->removeElement($tournoi)) {
+            // set the owning side to null (unless already changed)
+            if ($tournoi->getPays() === $this) {
+                $tournoi->setPays(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|City[]
+     */
+    public function getCities(): Collection
+    {
+        return $this->cities;
+    }
+
+    public function addCity(City $city): self
+    {
+        if (!$this->cities->contains($city)) {
+            $this->cities[] = $city;
+            $city->setCountry($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCity(City $city): self
+    {
+        if ($this->cities->removeElement($city)) {
+            // set the owning side to null (unless already changed)
+            if ($city->getCountry() === $this) {
+                $city->setCountry(null);
             }
         }
 

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/pays")
+ * @Route("admin/pays")
  */
 class PaysController extends AbstractController
 {
@@ -20,6 +20,8 @@ class PaysController extends AbstractController
      */
     public function index(PaysRepository $paysRepository): Response
     {
+        if($this->isGranted("ROLE_ADMIN")==false){dd('bil');}
+
         return $this->render('pays/index.html.twig', [
             'pays' => $paysRepository->findAll(),
         ]);

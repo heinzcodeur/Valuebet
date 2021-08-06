@@ -9,12 +9,37 @@
 </style>
     <div class="container" style="background: #01172e;color: #fff">
         <div class="row" >
-            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <h5>{{  matchs[0].tournoi}}</h5>
+                <h5>{{  matchs[1].tournoi}}</h5>
+            </div>
             <div class="col-md-8 bg-light text-dark">
-            <div class="col-md-2"></div>
                 <h5>{{ "now"|localizeddate('medium', 'none', NULL) }}
                 </h5>
+                <table class="table table-striped">
+                    <thead>
+                    <th>date</th>
+                    <th>sport</th>
+                    <th>tournoi</th>
+                    <th>favori</th>
+                    <th>outsider</th>
+                    <th>score</th>
+                    </thead>
+                    <tbody>
+                    {% for m in matchs %}
+                    <tr>
+                        <td>{{ m.calendrier|date('d/m/Y')}}</td>
+                        <td>{{ m.tournoi.discipline}}</td>
+                        <td>{{ m.tournoi}}</td>
+                        <td class="bg-success">{{ m.adversaire1}}</td>
+                        <td class="bg-danger">{{ m.adversaire2}}</td>
+                        <td>{{ (m.resultat) ? m.resultat :'???'}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
+                <div class="col-md-2"></div>
         </div>
     </div>
 

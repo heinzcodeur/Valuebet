@@ -1,0 +1,15 @@
+
+
+{% block body %}
+
+    {{ include('head.html.twig') }}
+
+    <h1>Create new Ranking</h1>
+
+    {{ include('ranking/_form.html.twig') }}
+
+    <a href="{{ path('ranking_index') }}" class="btn btn-primary">retour</a>
+
+    {{ include('end.html.twig') }}
+
+{% endblock %}

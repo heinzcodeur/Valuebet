@@ -1,0 +1,13 @@
+{% block body %}
+
+    {{ include('head.html.twig') }}
+
+    <h1>Create new Category</h1>
+
+    {{ include('category/_form.html.twig') }}
+
+    <a href="{{ path('category_index') }}" class="btn btn-primary">retour</a>
+
+    {{ include('end.html.twig') }}
+
+{% endblock %}
